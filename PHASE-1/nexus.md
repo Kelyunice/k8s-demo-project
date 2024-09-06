@@ -27,7 +27,7 @@
 
  > step 1: Go to Maven Downlaods and copy the download link of the most recent version.
 
-sudo wget https://dlcdn.apache.org/maven/maven-3/3.9.0/binaries/apache-maven-3.9.0-bin.tar.gz
+     sudo wget https://dlcdn.apache.org/maven/maven-3/3.9.0/binaries/apache-maven-3.9.0-bin.tar.gz
 
  > Step 2: Untar the mvn package to the /opt folder.
     
