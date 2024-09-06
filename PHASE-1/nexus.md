@@ -1,13 +1,13 @@
-## installation of nexus and maven
-#install latest open Jdk(maven pre-requiste)
+# installation of nexus and maven
+## install latest open Jdk(maven pre-requiste)
 
 sudo apt install openjdk-17-jdk openjdk-17-jre -y
 
-# Verify Java JDK installation using the following command.
+##Verify Java JDK installation using the following command.
 
 java -version
 
-# Installation of  Maven  From Maven Repository.
+##Installation of  Maven  From Maven Repository.
 
  > step 1: Go to Maven Downlaods and copy the download link of the most recent version.
 
