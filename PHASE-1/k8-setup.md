@@ -23,7 +23,7 @@
 #===================
 
 # Step 1: Install required packages
-sudo apt-get install -y apt-transport-https ca-certificates curl gpg
+sudo apt install -y apt-transport-https ca-certificates curl gpg
 
 # Step 2: Create directory for keyrings (if needed) and download Kubernetes apt key
 sudo mkdir -p -m 755 /etc/apt/keyrings
@@ -33,8 +33,8 @@ curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key | sudo gpg --
 echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
 
 # Step 4: Update package index and install Kubernetes packages
-sudo apt-get update
-sudo apt-get install -y kubelet kubeadm kubectl
+sudo apt update
+sudo apt install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
 
 # Optional Step 5: Enable kubelet service
