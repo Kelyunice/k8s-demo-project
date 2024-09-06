@@ -53,8 +53,9 @@
 # starting Nexus
  > create a nexus user
     
-     sudo adduser nexus 
- > create a nexus user
+     sudo adduser nexus
+ 
+ > add permission to nexus user
 
      sudo chown -R nexus:nexus nexus-3.67.1-01
      
