@@ -1,5 +1,6 @@
 # installation of nexus and maven
-## install latest open Jdk(maven pre-requiste)
+>[!IMPORTANT]
+>## install latest open Jdk(maven pre-requiste)
 
 sudo apt install openjdk-17-jdk openjdk-17-jre -y
 
