@@ -2,7 +2,9 @@
 
 ##1. installation of Java
    cd /opt 
+   
    sudo apt update
+   
    sudo apt install openjdk-11-jdk openjdk-11-jre -y
     
 
@@ -15,9 +17,12 @@
 >[!IMPORTANT]
 >## install open Jdk 8 (maven pre-requiste)
  
-cd /opt
+   cd /opt
+   
    sudo apt update
+   
    sudo apt install openjdk-11-jdk openjdk-11-jre -y
+   
    sudo apt install openjdk-8-jdk openjdk-8-jre -y
 
  > step 1: Go to Maven Downlaods and copy the download link of the most recent version.
