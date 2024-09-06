@@ -13,6 +13,11 @@ install docker euntime
 ```
 sudo apt install docker.io
 ```
+to install java
+```
+sudo apt install openjdk-11-jdk
+```
+
 to verify docker version we do
 ```
 docker --version
