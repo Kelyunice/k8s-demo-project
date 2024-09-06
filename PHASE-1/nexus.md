@@ -2,7 +2,7 @@
 >[!IMPORTANT]
 >## install latest open Jdk(maven pre-requiste)
 
-sudo apt install openjdk-17-jdk openjdk-17-jre -y
+sudo apt install openjdk-8-jdk openjdk-8-jre -y
 
 ## Verify Java JDK installation using the following command.
 
