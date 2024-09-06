@@ -1,3 +1,6 @@
+#OPTION ONE
+#===========
+
 #1-Installation of k8s on linux servers
   sudo apt update
   sudo apt upgrade
@@ -18,9 +21,10 @@
   sudo snap install --channel stable kubectl --classic
   snap install kubectx --classic
 
+#OPTION TWO
+#===========
 
-#3-Kubeadm Setup 
-#===================
+#-Kubeadm Setup  
 
 # Step 1: Install required packages
 sudo apt install -y apt-transport-https ca-certificates curl gpg
@@ -46,4 +50,5 @@ echo "Kubeadm version: $(kubeadm version -o short)"
 echo "Kubectl version: $(kubectl version --client --short)"
 
 echo "Installation of kubelet, kubeadm, and kubectl was successful!"
+
 
