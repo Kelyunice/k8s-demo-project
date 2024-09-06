@@ -1,6 +1,7 @@
 # installation of nexus and maven
 
-##1. installation of Java
+## installation of Java
+  
    cd /opt 
    
    sudo apt update
@@ -12,10 +13,10 @@
 
   java --version
 
-##2. Installation of  Maven  From Maven Repository.
+## Installation of  Maven  From Maven Repository.
 
 >[!IMPORTANT]
->## install open Jdk 8 (maven pre-requiste)
+>install open Jdk 8 (maven pre-requiste)
  
    cd /opt
    
