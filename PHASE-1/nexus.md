@@ -31,7 +31,7 @@
 
  > Step 2: Untar the mvn package to the /opt folder.
     
-     sudo tar xvf apache-maven-3.9.0-bin.tar.gz -C 
+     sudo tar xvf apache-maven-3.9.0-bin.tar.gz  
 
 ## Installation of  Nexus Artifactory Repository.  
 
