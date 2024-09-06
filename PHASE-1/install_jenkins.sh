@@ -1,5 +1,5 @@
 #!/bin/bash
-# ====== installing Jenkins=======
+# ====== installing Jenkins =======
 # jenkins can be intalled in two ways, either
 # i. Download Jenkins generic Java WAR package "https://www.jenkins.io/download/"
 # ii. Run Jenkins as a container
