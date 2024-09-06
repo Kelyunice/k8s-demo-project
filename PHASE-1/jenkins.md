@@ -6,8 +6,8 @@ ii. Run Jenkins as a container
 ==== Running Jenkins as a container ====
  create a vitual machine
  do your repository update
- ```
- sudo apt update
+```
+sudo apt update
 ```
 install docker euntime
 ```
@@ -22,7 +22,6 @@ to see containers running do
 sudo docker ps
 ```
 add ubuntu to docker group
-```
 ```
 sudo usermod -aG docker ubuntu
 ```
@@ -39,14 +38,14 @@ to see ip address of VM do
 ```
 curl ifconfig.io
 ```
-on the browser run
+on the browser run (insert the copied ip from the ifconfig command above)
 ```
-"ip_address of VM copied above":8080 
+ip_address of VM copied above:8080 
 ```
 to check initial password we do
 ```
 docker logs "containerID"
 ```
-copy initial paswword and enter it on the password required window
-select sugested plugins
+copy initial paswword and enter it on the password required window,
+select sugested plugins,
 enter admin credentials
