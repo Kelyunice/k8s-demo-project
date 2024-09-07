@@ -1,13 +1,11 @@
 #!/bin/bash
 # ====== installing Jenkins =======
-# jenkins can be intalled in two ways, either
-# i. Download Jenkins generic Java WAR package "https://www.jenkins.io/download/"
-# ii. Run Jenkins as a container
+# automating running Jenkins as a container
 
 # ==== Running Jenkins as a container ====
 # create a vitual machine
 
-# do your repository update
+# do package repository update
 sudo apt update -y
 
 # install docker euntime
