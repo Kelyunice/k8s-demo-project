@@ -4,7 +4,6 @@
 # Installation of k8s on linux servers
 ```
   sudo apt update
-```
   sudo apt upgrade
   sudo apt install curl
   sudo apt-get install apt-transport-https
@@ -14,6 +13,7 @@
   sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
   kubectl version --client
   kubectl version --client --output=yaml
+```
 
 
 # installation of minikube
