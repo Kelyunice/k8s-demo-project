@@ -27,7 +27,7 @@ sudo apt-get update
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin 
 ```
 ---
-Save this script in a file, for example, install_docker.sh, and make it executable using:
+Save this script in a file, for example, **install_docker.sh,** and make it executable using:
 
 
 ```
