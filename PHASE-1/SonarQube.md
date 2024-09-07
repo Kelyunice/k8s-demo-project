@@ -1,66 +1,59 @@
+```
 #!/bin/bash
 
-# Update the system
-echo "Updating system..."
-sudo apt update && sudo apt upgrade -y
+# Update package manager repositories
+sudo apt-get update
 
-# Install OpenJDK 11
-echo "Installing OpenJDK 11..."
-sudo apt install -y openjdk-11-jdk
+# Install necessary dependencies
+sudo apt-get install -y ca-certificates curl
 
-# Check if Java is installed
-echo "Checking Java version..."
-java -version
+# Create directory for Docker GPG key
+sudo install -m 0755 -d /etc/apt/keyrings
 
-# Create a new user for SonarQube
-echo "Creating SonarQube user..."
-sudo useradd -r -s /bin/bash sonarqube
+# Download Docker's GPG key
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
 
-# Download SonarQube
-echo "Downloading SonarQube..."
-wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-9.9.0.65566.zip
+# Ensure proper permissions for the key
+sudo chmod a+r /etc/apt/keyrings/docker.asc
 
-# Install unzip if not installed
-echo "Installing unzip..."
-sudo apt install -y unzip
+# Add Docker repository to Apt sources
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+$(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
-# Extract the downloaded SonarQube package
-echo "Extracting SonarQube..."
-unzip sonarqube-9.9.0.65566.zip
+# Update package manager repositories
+sudo apt-get update 
 
-# Move SonarQube to /opt directory
-echo "Moving SonarQube to /opt/sonarqube..."
-sudo mv sonarqube-9.9.0.65566 /opt/sonarqube
-sudo chown -R sonarqube:sonarqube /opt/sonarqube
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin 
+```
+---
+Save this script in a file, for example, install_docker.sh, and make it executable using:
 
-# Create a systemd service for SonarQube
-echo "Creating systemd service file for SonarQube..."
-sudo tee /etc/systemd/system/sonarqube.service > /dev/null <<EOF
-[Unit]
-Description=SonarQube service
-After=network.target
 
-[Service]
-Type=forking
-User=sonarqube
-Group=sonarqube
-ExecStart=/opt/sonarqube/bin/linux-x86-64/sonar.sh start
-ExecStop=/opt/sonarqube/bin/linux-x86-64/sonar.sh stop
-Restart=always
+```
+chmod +x install_docker.sh
+```
 
-[Install]
-WantedBy=multi-user.target
-EOF
+```
+./install_docker.sh
+```
 
-# Enable and start the SonarQube service
-echo "Enabling and starting SonarQube service..."
-sudo systemctl enable sonarqube
-sudo systemctl start sonarqube
+# Create Sonarqube Docker container
 
-# Allow SonarQube to run on port 9000 through the firewall
-echo "Configuring firewall for SonarQube..."
-sudo ufw allow 9000/tcp
+To run SonarQube in a Docker container with the provided command, you can follow these steps:
 
-# Output completion message
-echo "SonarQube installation completed. Access it at http://<YOUR_VM_IP>:9000"
+1. Open your terminal or command Pront
+2. Run the following command
+
+```
+docker run -d -p 9000:9000 --name sonar sonarqube:lts-community
+```
+This command will download the sonarqube:lts-community Docker image from Docker Hub if it's not already available locally. Then, it will create a container named "sonar" from this image, running it in detached mode (-d flag) and mapping port 9000 on the host machine to port 9000 in the container (-p 9000:9000 flag).
+
+Access SonarQube by opening a web browser and navigating to http://VmIP:9000.
+This will start the SonarQube server, and you should be able to access it using the provided URL. If you're running Docker on a remote server or a different port, replace localhost with the appropriate hostname or IP address and adjust the port accordingly.
+
+
+
+
 
