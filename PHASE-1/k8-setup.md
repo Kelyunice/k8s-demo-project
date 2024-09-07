@@ -8,47 +8,68 @@
   sudo snap install --channel stable kubectl --classic
   snap install kubectx --classic
 ```
-+++
+---
 
-#OPTION TWO
-#===========
+# Setup K8-Cluster using kubeadm [K8s Version ---> 1.28.1]
 
-#-Kubeadm Setup  
+1. **Update System Packages [On Master & Worker Node]**
 
-# Step 1: Install required packages
 ```
-sudo apt install -y apt-transport-https ca-certificates curl gpg
+sudo apt-get update
 ```
+2. **Install Docker[On Master & Worker Node]**
 
-# Step 2: Create directory for keyrings (if needed) and download Kubernetes apt key
 ```
-sudo mkdir -p -m 755 /etc/apt/keyrings
-curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+sudo apt install docker.io -y
+sudo chmod 666 /var/run/docker.sock
 ```
 
-# Step 3: Add Kubernetes repository
-```
-echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
-```
+3. **Install Required Dependencies for Kubernetes[On Master & Worker Node]**
 
-# Step 4: Update package index and install Kubernetes packages
+```
+sudo apt-get install -y apt-transport-https ca-certificates curl gnupg
+sudo mkdir -p -m 755 /etc/apt/keyrings   
+```
+4. **Add Kubernetes Repository and GPG Key[On Master & Worker Node]**
+
+```
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+```
+5. **Update Package List[On Master & Worker Node]**
+
 ```
 sudo apt update
-sudo apt install -y kubelet kubeadm kubectl
-sudo apt-mark hold kubelet kubeadm kubectl
+```
+6. **Install Kubernetes Components[On Master & Worker Node]**
+
+```
+sudo apt install -y kubeadm=1.28.1-1.1 kubelet=1.28.1-1.1 kubectl=1.28.1-1.1
+```
+7. **Initialize Kubernetes Master Node [On MasterNode]**
+
+```
+sudo kubeadm init --pod-network-cidr=10.244.0.0/16
 ```
 
-# Optional Step 5: Enable kubelet service
+8. ** Configure Kubernetes Cluster [On MasterNode]**
+
 ```
-sudo systemctl enable --now kubelet
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+```
+9. **Deploy Networking Solution (Calico) [On MasterNode]**
+
+```
+kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
 ```
 
-# Step 6: Test the version of installed packages and display detailed success messages
+10. **Deploy Ingress Controller (NGINX) [On MasterNode]**
+
 ```
-echo "Kubelet version: $(kubelet --version)"
-echo "Kubeadm version: $(kubeadm version -o short)"
-echo "Kubectl version: $(kubectl version --client --short)"
-echo "Installation of kubelet, kubeadm, and kubectl was successful!"
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.49.0/deploy/static/provider/baremetal/deploy.yaml
 ```
+
 
 
