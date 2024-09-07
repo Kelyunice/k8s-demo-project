@@ -63,27 +63,27 @@ sonatype/nexus3:latest: Specifies the Docker image to use for the container, in 
 ---
 Your provided commands are correct for accessing the Nexus password stored in the container. Here's a breakdown of the steps:
 
-**Get Container ID:** You need to find out the ID of the Nexus container. You can do this by running:
+1. **Get Container ID:** You need to find out the ID of the Nexus container. You can do this by running:
 ```
 docker ps
 ```
 This command lists all running containers along with their IDs, among other information.
 
-Access Container's Bash Shell: Once you have the container ID, you can execute the docker exec command to access the container's bash shell:
+2. **Access Container's Bash Shell:** Once you have the container ID, you can execute the docker exec command to access the container's bash shell:
 ```
 docker exec -it <container_ID> /bin/bash
 ```
 Replace <container_ID> with the actual ID of the Nexus container.
 
-**Navigate to Nexus Directory:** Inside the container's bash shell, navigate to the directory where Nexus stores its configuration:
+3. **Navigate to Nexus Directory:** Inside the container's bash shell, navigate to the directory where Nexus stores its configuration:
 ```
 cd sonatype-work/nexus3
 ```
-**View Admin Password:** Finally, you can view the admin password by displaying the contents of the admin.password file:
+4. **View Admin Password:** Finally, you can view the admin password by displaying the contents of the admin.password file:
 ```
 cat admin.password
 ```
-**Exit the Container Shell:** Once you have retrieved the password, you can exit the container's bash shell:
+5. **Exit the Container Shell:** Once you have retrieved the password, you can exit the container's bash shell:
 ```
 exit
 ```
