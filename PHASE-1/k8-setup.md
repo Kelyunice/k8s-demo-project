@@ -1,8 +1,10 @@
 #OPTION ONE
 #===========
 
-#1-Installation of k8s on linux servers
+# Installation of k8s on linux servers
+...
   sudo apt update
+...
   sudo apt upgrade
   sudo apt install curl
   sudo apt-get install apt-transport-https
@@ -14,7 +16,7 @@
   kubectl version --client --output=yaml
 
 
-#2-installation of minikube
+# installation of minikube
   curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
   sudo install minikube-linux-amd64 /usr/local/bin/minikube
   minikube start
