@@ -2,7 +2,9 @@
 #===========
 
 #1-Installation of k8s on linux servers
+...
   sudo apt update
+...
   sudo apt upgrade
   sudo apt install curl
   sudo apt-get install apt-transport-https
