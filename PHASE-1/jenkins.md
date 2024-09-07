@@ -53,4 +53,4 @@ docker logs "containerID"
 ```
 copy initial paswword and enter it on the password required window,
 select sugested plugins,
-enter admin credentials
+enter admin credentials. On the jenkins Dashboard, click "Manage Jenkins" then click "Plugins". Under plugins click "Available plugins", select all required plugins and click "Install"
