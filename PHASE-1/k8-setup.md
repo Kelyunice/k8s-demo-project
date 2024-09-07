@@ -2,7 +2,7 @@
 #===========
 
 # Installation of k8s on linux servers
-...
+# demo workshop
   sudo apt update
 ...
   sudo apt upgrade
