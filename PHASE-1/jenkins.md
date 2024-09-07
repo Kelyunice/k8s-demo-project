@@ -1,56 +1,64 @@
-====== installing Jenkins=======
-jenkins can be intalled in two ways, either
-i. Download Jenkins generic Java WAR package "https://www.jenkins.io/download/"
-ii. Run Jenkins as a container
+```
+#!/bin/bash
 
-==== Running Jenkins as a container ====
- create a vitual machine
- do your repository update
+# Update package manager repositories
+sudo apt-get update
+
+# Install necessary dependencies
+sudo apt-get install -y ca-certificates curl
+
+# Create directory for Docker GPG key
+sudo install -m 0755 -d /etc/apt/keyrings
+
+# Download Docker's GPG key
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+
+# Ensure proper permissions for the key
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add Docker repository to Apt sources
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+$(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+# Update package manager repositories
+sudo apt-get update
+
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin 
+
 ```
-sudo apt update
+---
+Save this script in a file, for example, ** install_docker.sh,** and make it executable using:
 ```
-install docker euntime
+chmod +x install_docker.sh
 ```
-sudo apt install docker.io
+Then, you can run the script using:
 ```
-to install java
-```
-sudo apt install openjdk-11-jdk
+./install_docker.sh
 ```
 
-to verify docker version we do
-```
-docker --version
-```
-to see containers running do
-```
-sudo docker ps
-```
-add ubuntu to docker group
-```
-sudo usermod -aG docker ubuntu
-```
-you can now execute docker commands as ubuntu user
-```
-docker ps
-```
-we run jenkins container and add volumes for data persistence
+Run the command to install jenkins as a docker container
 ```
 docker run -d -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):/usr/bin/docker jenkins/jenkins:lts
 ```
-to access jenkins on the browser, we open port 8080 on the VM
-to see ip address of VM do
+
+## to access jenkins on the browser, we open port 8080 on the VM
+ ### to see ip address of VM do
+ 
 ```
 curl ifconfig.io
 ```
+
 on the browser run (insert the copied ip from the ifconfig command above)
-```
-ip_address of VM copied above:8080 
-```
+
+
+> ip_address of VM copied above:8080 
+
 to check initial password we do
-```
-docker logs "containerID"
-```
+
+
+> docker logs "containerID"
+
 copy initial paswword and enter it on the password required window,
 select sugested plugins,
 enter admin credentials. On the jenkins Dashboard, click "Manage Jenkins" then click "Plugins". Under plugins click "Available plugins", select all required plugins and click "Install"
