@@ -1,0 +1,99 @@
+pipeline {
+    agent any
+    tools {
+        jdk 'jdk17'
+        maven 'Maven'
+    }
+    environment {
+        SCANNER_HOME= tool 'sonar-scanner'
+    }
+    stages {
+        stage ('Git Checkout') {
+            steps {
+                git branch: 'main', crendentialsId: 'github-cred', url: 'https://github.com/ebonje/java-maven-app'
+            }
+        }
+        stage ('compile') {
+            steps {
+              script {
+              }  
+            }
+        }
+        stage ('Test') {
+            steps {
+                sh 'mvn test'
+            }
+        }
+        stage ('SonarQube Analysis') {
+            steps {
+              sh ''  
+            }
+        }
+        stage ('Quality Gate') {
+            steps {
+              sh ''  
+            }
+        }
+        stage ('Build') {
+            steps {
+              sh 'mvn package'  
+            }
+        }
+        stage ('Publish To Nexus') {
+            steps {
+              sh 'mvn deploy'  
+            }
+        }
+        stage ('Build & tag Docker Image') {
+            steps {
+
+              sh 'docker build -t java-maven-app:1.0 .'  
+            }
+        }
+        stage ('Docker Image Scan') {
+            steps {
+              sh 'trivy image --format table -o trivy-image-report.html java-maven-app 
+            }
+        }
+        stage ('Push Docker Image') {
+            steps {
+              sh 'docker push java-maven-app:1.0'  
+            }
+        }
+      stage ('deploy To Kubernetes') {
+            steps {
+              sh 'kubectl apply -f deployment.yaml'  
+            }
+        }
+        stage ('verify_deployment') {
+            step {
+                script {
+                   gv = load "docker.groovy" 
+                }
+            }
+        } 
+
+
+        stage ('Push Docker Image') {
+            steps {
+              sh 'docker push java-maven-app:1.0'  
+            }
+        }
+        stage ('email') {
+            steps {
+              subject
+              body
+              to: jonathanta2023@gamil.com
+              from: jenkins25@gmail.com
+
+            }
+        }  
+    }
+}
+docker.groovy
+def verify_deployment() {
+            steps {
+              sh 'kubectl get pods -n myapps'
+              sh 'kubectl get svc -n myapps'  
+            }
+        }
