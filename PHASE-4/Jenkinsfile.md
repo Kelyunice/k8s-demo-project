@@ -16,11 +16,7 @@ pipeline {
                 git credentialsId: 'git-credential', url: 'https://github.com/etechsconsulting/java-maven-app.git'
             }
         }
-        stage('Hello') {
-            steps {
-                echo 'Hello World'
-            }
-        }
+
         stage('Compile') {
             steps {
                 sh "mvn compile"
