@@ -54,30 +54,43 @@ pipeline {
                 sh "mvn deploy"
             }
         }
-        stage('Hello') {
+        stage('Build & Tag Docker Image') {
             steps {
-                echo 'Hello World'
+                script {
+                   withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker') {
+                            sh "docker build -t ebonje/java-maven-app:1.0 ."
+                   }    
+                }     
+            } 
+        }
+        stage('Docker Scan Image') {
+            steps {
+                sh "trivy fs --format table -o trivy-fs-report.html ebonje/java-maven-app:1.0 "
             }
         }
-        stage('Hello') {
+        stage('Push Docker Image') {
             steps {
-                echo 'Hello World'
+                script {
+                    withDockerRegistry(credentialsId: 'docker-cred', toolName: 'docker') {
+                    sh "docker push ebonje/java-maven-app:1.0"
+                    }
+                } 
             }
         }
-        stage('Hello') {
+        stage('Deploy To Kubernetes') {
             steps {
-                echo 'Hello World'
-            }
-        }
-        stage('Hello') {
-            steps {
-                echo 'Hello World'
+                withKubeConfig(caCertificate: '', clusterName: 'kubernetes', contextName: '', credentialsId: 'k8-cred', 
+                   namespace: 'webapps', restrictKubeConfigAccess: false, serverUrl: 'https://172.31.8.146:6443') {
+               }         sh "kubectl apply -f deployment-service.yaml"
             }
         }
         
-        stage('Hello') {
+        stage('Verify the Deploy') {
             steps {
-                echo 'Hello World'
+                withKubeConfig(caCertificate: '', clusterName: 'kubernetes', contextName: '', credentialsId: 'k8-cred', 
+                   namespace: 'webapps', restrictKubeConfigAccess: false, serverUrl: 'https://172.31.8.146:6443') {
+                   sh "kubectl  get pod -n webapps"
+                   sh "kubectl get svc -n webapps"
             }
         }
     }
