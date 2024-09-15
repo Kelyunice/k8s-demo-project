@@ -12,6 +12,15 @@
 
 # Setup K8-Cluster using kubeadm [K8s Version ---> 1.28.1]
 
+## Pre-requisite
+ create three virtual machine on AWS of type t2 medium
+ name the one virtual machine as **master node**
+ name the two others as **workers nodes**
+ switch to root user before doing the following installation
+```
+sudo su -
+```
+
 1. **Update System Packages [On Master & Worker Node]**
 
 ```
