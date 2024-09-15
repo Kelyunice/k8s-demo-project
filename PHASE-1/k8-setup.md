@@ -27,7 +27,7 @@ sudo chmod 666 /var/run/docker.sock
 3. **Install Required Dependencies for Kubernetes[On Master & Worker Node]**
 
 ```
-sudo apt-get install -y apt-transport-https ca-certificates curl gnupg
+sudo apt-get install -y apt-transport-https ca-certificates curl gpg
 sudo mkdir -p -m 755 /etc/apt/keyrings   
 ```
 4. **Add Kubernetes Repository and GPG Key[On Master & Worker Node]**
