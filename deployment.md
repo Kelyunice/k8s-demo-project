@@ -106,7 +106,7 @@ metadata:
     kubernetes.io/service-account.name: jenkins
 type: kubernetes.io/service-account-token
 ```
-because we didnot provide the namespace in the manifest file for the secrete we need to pass the neame space when apply the file
+because we didnot provide the namespace in the manifest file for the secrete we need to pass the neame space when apply the file 
 
 ```
 kubectl apply -f secrete.yaml -n webapp
@@ -116,6 +116,9 @@ kubectl apply -f secrete.yaml -n webapp
 ```
 kubectl describe secrete mysecrete -n webapp
 ```
+
+> Use the output of the _kubectl describe command_ to get the token and copy the token to the ***jenkins controller*** and go to the credential section choose
+> crendential of type **_secret text_** and paste the secrete.
 
 6. ## To get the k8s server _endpoint_ and _cluster name_ in our home directory do the following:
 
