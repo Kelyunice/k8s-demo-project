@@ -8,7 +8,7 @@ manifest files:
 - ### Create a secret for jenkins to authenticate to the cluster
 - ### create a manifest file for the deployment
 
-  1. create a serviceaccount **svc.yaml**
+1. create a serviceaccount **svc.yaml**
 
   ```svc.yaml
   apiVersion: v1
