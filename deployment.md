@@ -145,7 +145,7 @@ ls
 cat config
 ```
 
-the we can verify the cluster name and the server endpoint to use in our Jenkis controller to generate our jenkinsfile at the pipeline syntax
+the we can verify the **_cluster name_** and the **_server endpoint_** to use in our Jenkis controller to generate our jenkinsfile at the pipeline syntax
 
 7. ## create a manifest file for the deployment of our application
 ```deployment-service.yaml
