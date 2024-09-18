@@ -108,6 +108,17 @@ type: kubernetes.io/service-account-token
 ```
 because we didnot provide the namespace in the manifest file for the secrete we need to pass the neame space when apply the file 
 
+## the following should be added to the Jenkins controller to generate our pipeline syntax to use in our Jenkinsfile and the deployment stage of the jenkinsfile:
+
+| name             | value                    |
+| ---              | ---                      |
+| token            | secrete text             |
+| ---              | ---                      |
+| cluster name     | kubernetes               |
+| --               | ---                      |
+| cluster endpoint |  https://ip address:6443 |
+| namespace        |  webapp                  |
+|   ---            | ---                      |
 ```
 kubectl apply -f secrete.yaml -n webapp
 ```
