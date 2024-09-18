@@ -131,7 +131,7 @@ kubectl describe secrete mysecrete -n webapp
 > Use the output of the _kubectl describe command_ to get the token and copy the token to the ***jenkins controller*** and go to the credential section choose
 > crendential of type **_secret text_** and paste the secrete.
 
-6.  To get the**_k8s server endpoint_** and **_cluster name_**. in our home directory do the following:
+6.  To get the **_k8s server endpoint_** and **_cluster name_**. in our home directory do the following:
 
 ```
 cd /.kube
