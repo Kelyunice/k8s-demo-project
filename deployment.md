@@ -7,6 +7,7 @@ manifest files:
 - ### Assign Role to serviceaccount (RoleBinding)
 - ### Create a secret for jenkins to authenticate to the cluster
 - ### create a manifest file for the deployment
+- ### Install kubectl on jenkins virtual machine 
 
 1. create a serviceaccount **svc.yaml**
 
@@ -133,6 +134,17 @@ cat config
 the we can verify the cluster name and the server endpoint to use in our Jenkis controller to generate our jenkinsfile at the pipeline syntax
 
 7. ## create a manifest file for the deployment of our application
+
+
+
+8. ## Installation of kubectl on Jenkins command line to permit jenkins to run kubectl command
+
+```bash
+curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.19.6/2021-01-05/bin/linux/amd64/kubectl
+chmod +x ./kubectl
+sudo mv ./kubectl /usr/local/bin
+kubectl version --short --client
+```
 
    
 
