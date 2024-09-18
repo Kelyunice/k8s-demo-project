@@ -134,10 +134,48 @@ cat config
 the we can verify the cluster name and the server endpoint to use in our Jenkis controller to generate our jenkinsfile at the pipeline syntax
 
 7. ## create a manifest file for the deployment of our application
+```deployment-service.yaml
+apiVersion: apps/v1
+kind: Deployment 
+metadata:
+  name: java-maven-app-deployment
+spec:
+  selector:
+    matchLabels:
+      app: java-maven-app
+  replicas: 2 # Number of replicas that will be created for this deployment
+  template:
+    metadata:
+      labels:
+        app: java-maven-app
+    spec:
+      containers:
+        - name: java-maven-app
+          image: ebonje/java-maven-app:1.0 # this image will be used by containers in the cluster
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080 # The port that the container is running on in the cluster
+
+
+---
+
+apiVersion: v1 
+kind: Service 
+metadata: 
+  name: java-maven-app-svc
+spec:
+  selector:
+    app: java-maven-app
+  ports:
+    - protocol: "TCP"
+      port: 8080 # the service is running on this port in the cluster
+      targetPort: 8080 # The port exposed by the service
+  type: LoadBalancer # type of the service.
+```
 
 
 
-8. ## Installation of kubectl on Jenkins command line to permit jenkins to run kubectl command
+9. ## Installation of kubectl on Jenkins command line to permit jenkins to run kubectl command
 
 ```bash
 curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.19.6/2021-01-05/bin/linux/amd64/kubectl
