@@ -2,11 +2,11 @@
 
 for jenkins to connect with the cluster for any deployment to be made jenkins need authentication and authorization this will be achieve by creating the following 
 manifest files:
-- ## Create serviveaccount for Jenkins
-- ## Create Role for jenkins
-- ## Assign Role to serviceaccount (RoleBinding)
-- ## Create a secret for jenkins to authenticate to the cluster
-- ## create a manifest file for the deployment
+- ### Create serviveaccount for Jenkins
+- ### Create Role for jenkins
+- ### Assign Role to serviceaccount (RoleBinding)
+- ### Create a secret for jenkins to authenticate to the cluster
+- ### create a manifest file for the deployment
 
   1. create a serviceaccount **svc.yaml**
 
