@@ -1,6 +1,6 @@
 
 | type       | protocol | port range   |  source    |
-|  ---       |     ---  |     ----     |  ---       |
+|            |          |              |            |
 | SMTP       | TCP      |   25         |  0.0.0.0/0 |
 | ---        |   ---    |  ----        |    ---     |
 | Custom TCP | TCP      | 3000 - 10000 | 0.0.0.0/0  |
