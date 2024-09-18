@@ -1,4 +1,4 @@
-# manifest files need to realized the project
+# manifest files needed to realized the project
 
 for jenkins to connect with the cluster for any deployment to be made jenkins need authentication and authorization this will be achieve by creating the following 
 manifest files:
