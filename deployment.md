@@ -207,8 +207,22 @@ echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.
 sudo apt-get update
 sudo apt-get install trivy -y
 
+```
+create a script called **trivy.sh** and put the command in and run
 
 ```
+vi trivy.sh
+```
+
+```
+sudo chmod +x trivy.sh
+```
+
+```
+./trivy.sh
+```
+
+trivy --version
    
 
 
