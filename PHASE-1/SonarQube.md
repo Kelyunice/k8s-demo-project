@@ -38,6 +38,13 @@ chmod +x install_docker.sh
 ./install_docker.sh
 ```
 
+```
+sudo usermod -aG docker ubuntu
+```
+```
+exit
+```
+
 # Create Sonarqube Docker container
 
 To run SonarQube in a Docker container with the provided command, you can follow these steps:
