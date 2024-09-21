@@ -134,7 +134,7 @@ kubectl describe secrete mysecrete -n webapp
 6.  To get the **_k8s server endpoint_** and **_cluster name_**. in our home directory do the following:
 
 ```
-cd /.kube
+cd ~/.kube
 ```
 
 ```
