@@ -222,8 +222,9 @@ sudo chmod +x trivy.sh
 ./trivy.sh
 ```
 
+```
 trivy --version
-   
+```
 
 
 
