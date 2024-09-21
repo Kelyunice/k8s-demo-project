@@ -49,4 +49,4 @@
   > or individual job configurations. Each plugin usually comes with its own set of documentation to guide you through the configuration process.
   >
 
-
+9. ## configure all the plugin install in jenkins
