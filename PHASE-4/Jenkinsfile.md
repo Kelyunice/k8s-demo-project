@@ -43,7 +43,9 @@ pipeline {
         }
         stage('Quality Gate') {
             steps {
-                waitForQualityGate abortPipeline: False, credentailsId: 'put your token'
+                script {
+                  waitForQualityGate abortPipeline: False, credentailsId: 'sonar-token'
+                }
             }
         }
         stage('Build Artifact') {
