@@ -36,7 +36,8 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('sonar') {
-    
+                    sh '''$SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=java-maven-app -Dsonar.projectKey=java-maven-app \
+                           -Dsonar.java.banaries=. '''     
                 }
             }
         }
