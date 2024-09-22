@@ -35,8 +35,8 @@ pipeline {
         }
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv(credentialsId: 'sonar-credential') {
-                 sh *******
+                withSonarQubeEnv('sonar') {
+    
                 }
             }
         }
