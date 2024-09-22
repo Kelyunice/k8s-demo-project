@@ -54,8 +54,10 @@ pipeline {
             }
         }
         stage('Publish To Nexus') {
-            steps {***
-                sh "mvn deploy"
+            steps {
+               withMaven(globalMavenSettingsConfig: 'global-settings', jdk: 'jdk17', maven: 'maven3', mavenSettingsConfig: '', traceability: true) {
+                        sh "mvn deploy"
+               }
             }
         }
         stage('Build & Tag Docker Image') {
