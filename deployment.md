@@ -125,7 +125,7 @@ kubectl apply -f secrete.yaml -n webapp
 5. ## run the command to use the token created by the secrete file which we need to provide as credential to jenkins so we can authenticate with k8s
 
 ```
-kubectl describe secrete mysecrete -n webapp
+kubectl describe secrets mysecrete -n webapp
 ```
 
 > Use the output of the _kubectl describe command_ to get the token and copy the token to the ***jenkins controller*** and go to the credential section choose
