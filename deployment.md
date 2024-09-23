@@ -243,7 +243,23 @@ apt-get install trivy -y
 trivy --version
 ```
 
+# to scan a filesystem run the command below:
 
+```
+trivy fs .
+```
+
+# to scan a filesystem an export the report to a particular format
+
+```
+trivy fs --format table -o trivy-fs-report.html .
+```
+
+# to scan an image
+
+```
+trivy image <image_name>
+```
 
 
 
