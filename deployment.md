@@ -200,7 +200,7 @@ kubectl version --short --client
 ---
 ## Installation of Trivy on Jenkins server inside jenkins container since Jenkins is running as a Docker Container
 
-# Enter the container as a root user
+## Enter the container as a root user
 
 ```
 docker exec -u 0 -it <container id> /bin/bash
@@ -208,7 +208,7 @@ docker exec -u 0 -it <container id> /bin/bash
 
 replace the container id with your actual container id
 
-# modify the permission (read write permission ) of the docker daemon for regular user (Jenkins) to run docker command
+## modify the permission (read write permission ) of the docker daemon for regular user (Jenkins) to run docker command
 
 ```
 chmod 666 /var/run/docker.sock
