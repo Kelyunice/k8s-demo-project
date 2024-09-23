@@ -189,12 +189,28 @@ spec:
 
 
 
-9. ## Installation of kubectl on Jenkins command line to permit jenkins to run kubectl command
+9. ## Installation of kubectl on Jenkins container since jenkins is running as a Docker Container to permit jenkins to run kubectl command
 
-```bash
+## Enter inside the container as root user
+
+```
+kubectl exec -u 0 -it <container id> /bin/bash
+```
+## Inside the container run the following command
+
+```
 curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.19.6/2021-01-05/bin/linux/amd64/kubectl
+```
+
+```
 chmod +x ./kubectl
-sudo mv ./kubectl /usr/local/bin
+```
+
+```
+mv ./kubectl /usr/local/bin
+```
+
+```
 kubectl version --short --client
 ```
 ---
