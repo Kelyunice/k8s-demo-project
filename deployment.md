@@ -198,29 +198,46 @@ sudo mv ./kubectl /usr/local/bin
 kubectl version --short --client
 ```
 ---
-## Installation of Trivy on Jenkins server
+## Installation of Trivy on Jenkins server inside jenkins container since Jenkins is running as a Docker Container
+
+# Enter the container as a root user
 
 ```
-sudo apt-get install wget apt-transport-https gnupg lsb-release
-wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg > /dev/null
-echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main" | sudo tee -a /etc/apt/sources.list.d/trivy.list
-sudo apt-get update
-sudo apt-get install trivy -y
-
-```
-create a script called **trivy.sh** and put the command in and run
-
-```
-vi trivy.sh
+docker exec -u 0 -it <container id> /bin/bash
 ```
 
+replace the container id with your actual container id
+
+# modify the permission (read write permission ) of the docker daemon for regular user (Jenkins) to run docker command
+
 ```
-sudo chmod +x trivy.sh
+chmod 666 /var/run/docker.sock
+```
+
+Run the following command inside the container as root user
+
+```
+apt-get install wget apt-transport-https gnupg lsb-release
 ```
 
 ```
-./trivy.sh
+wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | tee /usr/share/keyrings/trivy.gpg > /dev/null
 ```
+
+If the above command does not succeed to download the package then install wget
+
+```
+echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main" | tee -a /etc/apt/sources.list.d/trivy.list
+```
+
+```
+apt-get update
+```
+
+```
+apt-get install trivy -y
+```
+
 
 ```
 trivy --version
