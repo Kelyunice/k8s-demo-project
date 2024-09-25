@@ -71,7 +71,7 @@ pipeline {
         }
         stage('Docker Scan Image') {
             steps {
-                sh "trivy fs --format table -o trivy-image-report.html ebonje/java-maven-app:1.0"
+                sh "trivy image ebonje/java-maven-app:1.0"
             }
         }
         stage('Push Docker Image') {
