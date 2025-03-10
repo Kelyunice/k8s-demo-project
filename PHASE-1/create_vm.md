@@ -1,4 +1,5 @@
-#create virtual machine in AWS for the following
+#create virtual machine in AWS for the following: 
+
 sonarqube
 nexus
 maven
